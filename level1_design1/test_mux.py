@@ -2,6 +2,7 @@
 
 import cocotb
 from cocotb.triggers import Timer
+import random
 
 @cocotb.test()
 async def test_mux(dut):
@@ -11,12 +12,13 @@ async def test_mux(dut):
     SEL1 = 1 
 
     #input driving
-    dut.inp1 = I1
-    dut.sel = SEL1
+    dut.inp1.value = I1
+    dut.sel.value = SEL1
 
     await Timer(2, units='ns') 
 
-    assert dut.out.value = I1(SEL1),f" muxout is incorrect:{dut.X.value}! = 3"
+    assert dut.out.value == I1(SEL1),f" muxout is incorrect:{dut.X.value}! = 3"
+    
     @cocotb.test()
 async def mux_randomised_test(dut):
     """Test for mux 2 random numbers multiple times"""
